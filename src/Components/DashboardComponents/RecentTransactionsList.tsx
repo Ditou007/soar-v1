@@ -52,9 +52,9 @@ const RecentTransactionsList: React.FC = () => {
             const lighterCircleColor = lightenColor(transaction.iconColor, 70)
 
             return (
-              <li key={index} className='flex items-center'>
+              <li key={index} className='flex  items-center'>
                 <div
-                  className='w-[55px] h-[55px] flex items-center justify-center rounded-full'
+                  className='min-w-[55px] min-h-[55px] flex items-center justify-center rounded-full'
                   style={{ backgroundColor: lighterCircleColor }}
                 >
                   {/* Color the icon */}
@@ -64,7 +64,7 @@ const RecentTransactionsList: React.FC = () => {
                 </div>
 
                 {/* Description and Date */}
-                <div className='ml-4 font-inter min-w-[165px]'>
+                <div className='ml-4 font-inter min-w-[175px]'>
                   <div className='text-base font-medium text-menu'>
                     {transaction.description}
                   </div>
@@ -75,7 +75,7 @@ const RecentTransactionsList: React.FC = () => {
 
                 {/* Amount */}
                 <div
-                  className={`ml-auto text-sm font-bold ${
+                  className={`ml-auto text-sm font-bold   ${
                     transaction.amount > 0 ? 'text-green-500' : 'text-red-500'
                   }`}
                 >

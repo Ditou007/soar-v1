@@ -2,7 +2,7 @@ import Image from 'next/image'
 import React from 'react'
 import { SoarIconProps } from 'soar/Interfaces/iconInterfaces'
 
-const CardChipSvg: React.FC<SoarIconProps> = ({ className }) => {
+const CardChipSvgWhite: React.FC<SoarIconProps> = ({ className }) => {
   return (
     <Image
       className={className}
@@ -15,4 +15,4 @@ const CardChipSvg: React.FC<SoarIconProps> = ({ className }) => {
   )
 }
 
-export default CardChipSvg
+export default CardChipSvgWhite

@@ -14,12 +14,14 @@ const BrowserRouter = dynamic(
 
 import { Routes, Route } from 'react-router-dom'
 import { SnackbarProvider } from 'notistack'
+import NotFound from 'soar/Components/Views/NotFound'
+import Loading from 'soar/Components/Views/LoadingPage'
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <Provider store={store}>
       <BrowserRouter>
-        <Suspense fallback={<div className='p-6 text-lg'>Loading...</div>}>
+        <Suspense fallback={<Loading />}>
           <Routes>
             {routes.map((route, index) => {
               const RouteElement = route.element
@@ -28,7 +30,7 @@ export default function App({ Component, pageProps }: AppProps) {
                   key={index}
                   path={route.path}
                   element={
-                    <Suspense fallback={<div>Loading...</div>}>
+                    <Suspense fallback={<Loading />}>
                       <SnackbarProvider
                         maxSnack={3}
                         anchorOrigin={{
@@ -44,7 +46,7 @@ export default function App({ Component, pageProps }: AppProps) {
               )
             })}
             {/* Fallback for unmatched routes */}
-            <Route path='*' element={<div>Page Not Found</div>} />
+            <Route path='*' element={<NotFound />} />
           </Routes>
         </Suspense>
       </BrowserRouter>

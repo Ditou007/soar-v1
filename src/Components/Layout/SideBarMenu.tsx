@@ -15,6 +15,7 @@ import SoarTaskSvg from '../Icons/SoarTaskSvg'
 import TransactionsSvg from '../Icons/TransactionsSvg'
 
 // Menu Items Array
+// this can also fetched from the backend
 const menuItems = [
   {
     label: 'Dashboard',
@@ -56,8 +57,7 @@ const menuItems = [
 ]
 
 const SidebarMenu: React.FC = () => {
-  // const location =
-  const router = useLocation() // Get current route
+  const router = useLocation()
   const [activePath, setActivePath] = useState(router.pathname)
 
   return (
@@ -67,7 +67,6 @@ const SidebarMenu: React.FC = () => {
           <SoarTaskSvg className='mx-2 text-menu' /> Soar Task
         </div>
         <div className='mt-6'>
-          {/* Menu Items */}
           <ul>
             {menuItems.map((item, index) => (
               <li key={index} onClick={() => setActivePath(item.path)}>
@@ -77,7 +76,6 @@ const SidebarMenu: React.FC = () => {
           ${activePath === item.path ? 'text-menu' : ''}
         `}
                 >
-                  {/* Highlighted Vertical Line */}
                   <span
                     className={`w-1 h-12 rounded-r-full ${
                       activePath === item.path ? 'bg-menu' : 'bg-transparent'

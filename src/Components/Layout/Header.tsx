@@ -10,6 +10,8 @@ import { useDispatch } from 'react-redux'
 import { toggleSidebar } from 'soar/redux/slices/sidebarSlice'
 import SoarSearchField from '../FormComponents/SoarSearchField'
 import UserAvatar from '../Common/UserAvatar'
+import BellSvg from '../Icons/BellSvg'
+import GearUnFilled from '../Icons/GearUnFilled'
 
 interface HeaderProps {
   title: string
@@ -36,12 +38,10 @@ const Header: React.FC<HeaderProps> = ({ title }) => {
           </button>
         </div>
 
-        {/* Title - centered on mobile */}
         <div className='absolute left-1/2 transform -translate-x-1/2 md:static md:transform-none md:left-0 text-lg md:text-2xl font-semibold text-primary truncate'>
           {title}
         </div>
 
-        {/* Search - Hidden on mobile, visible on md+ screens */}
         <div className='hidden md:flex flex-1 mx-4 justify-end'>
           <SoarSearchField
             width='250px'
@@ -54,19 +54,28 @@ const Header: React.FC<HeaderProps> = ({ title }) => {
 
         {/* Right Section: Icons */}
         <div className='flex items-center space-x-4'>
-          <button className='hidden sm:block p-2 text-gray-600 hover:text-gray-800 transition'>
-            <Settings fontSize='medium' />
-          </button>
-          <button className='hidden sm:block p-2 text-gray-600 hover:text-gray-800 transition'>
-            <Notifications fontSize='medium' />
-          </button>
+          <div
+            className='min-w-[50px] min-h-[50px] flex items-center justify-center rounded-full'
+            style={{ backgroundColor: '#F5F7FA' }}
+          >
+            <button className='hidden sm:block p-2 text-gray-600 hover:text-gray-800 transition'>
+              <GearUnFilled />
+            </button>
+          </div>
+          <div
+            className='min-w-[50px] min-h-[50px] flex items-center justify-center rounded-full'
+            style={{ backgroundColor: '#F5F7FA' }}
+          >
+            <button className='hidden sm:block p-2 text-gray-600 hover:text-gray-800 transition'>
+              <BellSvg />
+            </button>
+          </div>
           <button className='p-2 text-gray-600 hover:text-gray-800 transition'>
             <UserAvatar editable={false} size={40} />
           </button>
         </div>
       </div>
 
-      {/* Mobile Search Row - Visible only on small screens */}
       <div className='md:hidden w-full px-4 pb-3'>
         <SoarSearchField
           width='100%'

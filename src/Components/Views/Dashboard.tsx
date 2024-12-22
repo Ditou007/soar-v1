@@ -1,17 +1,18 @@
 import React from 'react'
 import AppLayout from 'soar/Components/Layout/AppLayout'
-import MyCards from '../DashboardComponents/MyCards'
-import RecentTransactionsList from '../DashboardComponents/RecentTransactionsList'
-import WeeklyActivityChart from '../ChartComponents/SoarReusableBarChart'
-import ExpenseStatisticsChart from '../ChartComponents/SoarPieChart'
-import SoarPieChart from '../ChartComponents/SoarPieChart'
-import { title } from 'process'
-import CardChipSvg from '../Icons/CardChipSvg'
-import MasterCardSvg from '../Icons/MasterCardSvg'
-import QuickTransferCard from '../DashboardComponents/QuickTransferCard'
 import ReusableLineGraph from '../ChartComponents/ReusableLineGraph'
+import SoarPieChart from '../ChartComponents/SoarPieChart'
+import WeeklyActivityChart from '../ChartComponents/SoarReusableBarChart'
+import MyCards from '../DashboardComponents/MyCards'
+import QuickTransferCard from '../DashboardComponents/QuickTransferCard'
+import RecentTransactionsList from '../DashboardComponents/RecentTransactionsList'
+import CardChipSvgBlack from '../Icons/CardChipSvgBlack'
+import CardChipSvgWhite from '../Icons/CardChipSvgWhite'
+import MasterCardSvg from '../Icons/MasterCardSvg'
 
 const Dashboard: React.FC = () => {
+  // in a real life senarior this data would be fetched from an api here
+  // since there arent any api calls no loading states or loaders were added
   const pieData = {
     labels: ['Entertainment', 'Bill Expenses', 'Investments', 'Others'],
     values: [30, 15, 20, 35],
@@ -48,7 +49,7 @@ const Dashboard: React.FC = () => {
       cardNumber: '1234 **** **** 3456',
       cardHolder: 'John Doe',
       validThru: '12/26',
-      chipIcon: <CardChipSvg className='w-8 h-8' />,
+      chipIcon: <CardChipSvgWhite className='w-8 h-8' />,
       cardTypeIcon: <MasterCardSvg />,
       cardType: 'dark',
     },
@@ -57,7 +58,7 @@ const Dashboard: React.FC = () => {
       cardNumber: '9876 **** **** 7654',
       cardHolder: 'Jane Smith',
       validThru: '06/25',
-      chipIcon: <CardChipSvg className='w-8 h-8' />,
+      chipIcon: <CardChipSvgBlack className='w-8 h-8' />,
       cardTypeIcon: <MasterCardSvg />,
       cardType: 'white',
     },
