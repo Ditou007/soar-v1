@@ -28,7 +28,8 @@ const Header: React.FC<HeaderProps> = ({ title }) => {
     <header className='flex flex-col md:flex-row items-start md:items-center bg-white border-b-[1px]'>
       {/* Main row */}
       <div className='flex items-center justify-between w-full px-4 py-3'>
-        <div className='flex items-center md:flex-grow-0 flex-grow'>
+        {/* Left section with menu and title */}
+        <div className='flex items-center flex-1 md:flex-initial'>
           <button
             onClick={handleSidebarToggle}
             className='text-gray-600 hover:text-primary focus:outline-none text-2xl ml-4 md:mr-6'
@@ -38,10 +39,14 @@ const Header: React.FC<HeaderProps> = ({ title }) => {
           </button>
         </div>
 
-        <div className='absolute left-1/2 transform -translate-x-1/2 md:static md:transform-none md:left-0 text-lg md:text-2xl font-semibold text-primary truncate'>
-          {title}
+        {/* Center title section */}
+        <div className='flex-1 flex justify-center md:justify-start'>
+          <h1 className='text-lg md:text-2xl font-semibold text-primary truncate'>
+            {title}
+          </h1>
         </div>
 
+        {/* Search section */}
         <div className='hidden md:flex flex-1 mx-4 justify-end'>
           <SoarSearchField
             width='250px'
@@ -81,6 +86,7 @@ const Header: React.FC<HeaderProps> = ({ title }) => {
         </div>
       </div>
 
+      {/* Mobile search bar */}
       <div className='md:hidden w-full px-4 pb-3'>
         <SoarSearchField
           width='100%'

@@ -27,7 +27,7 @@ const SoarPieChart: React.FC<SoarPieChartProps> = ({
         data: values,
         backgroundColor: colors,
         borderWidth: 0,
-        offset: offsets || new Array(values.length).fill(0), // default no offset if not provided
+        offset: offsets || new Array(values.length).fill(0),
         borderRadius: 10,
       },
     ],
@@ -47,7 +47,7 @@ const SoarPieChart: React.FC<SoarPieChartProps> = ({
         color: '#FFFFFF',
         font: {
           weight: 'bold' as const,
-          size: 9,
+          size: 11,
         },
         formatter: (value: number, context: any) => {
           const label = context.chart.data.labels[context.dataIndex]
