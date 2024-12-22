@@ -54,22 +54,27 @@ const Header: React.FC<HeaderProps> = ({ title }) => {
 
         {/* Right Section: Icons */}
         <div className='flex items-center space-x-4'>
+          {/* Gear Icon */}
           <div
-            className='min-w-[50px] min-h-[50px] flex items-center justify-center rounded-full'
+            className='hidden sm:flex items-center justify-center min-w-[50px] min-h-[50px] rounded-full'
             style={{ backgroundColor: '#F5F7FA' }}
           >
-            <button className='hidden sm:block p-2 text-gray-600 hover:text-gray-800 transition'>
+            <button className='p-2 text-gray-600 hover:text-gray-800 transition'>
               <GearUnFilled />
             </button>
           </div>
+
+          {/* Bell Icon */}
           <div
-            className='min-w-[50px] min-h-[50px] flex items-center justify-center rounded-full'
+            className='hidden sm:flex items-center justify-center min-w-[50px] min-h-[50px] rounded-full'
             style={{ backgroundColor: '#F5F7FA' }}
           >
-            <button className='hidden sm:block p-2 text-gray-600 hover:text-gray-800 transition'>
+            <button className='p-2 text-gray-600 hover:text-gray-800 transition'>
               <BellSvg />
             </button>
           </div>
+
+          {/* User Avatar */}
           <button className='p-2 text-gray-600 hover:text-gray-800 transition'>
             <UserAvatar editable={false} size={40} />
           </button>

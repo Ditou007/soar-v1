@@ -1,7 +1,7 @@
 import React from 'react'
 import SoarCreditCard from './SoarCreditCard'
 
-interface MyCardsProps {
+export interface MyCardsProps {
   cardData: {
     balance: string
     cardNumber: string

@@ -1,73 +1,67 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import axios from 'axios'
 import AppLayout from 'soar/Components/Layout/AppLayout'
 import ReusableLineGraph from '../ChartComponents/ReusableLineGraph'
 import SoarPieChart from '../ChartComponents/SoarPieChart'
 import WeeklyActivityChart from '../ChartComponents/SoarReusableBarChart'
-import MyCards from '../DashboardComponents/MyCards'
+import MyCards, { MyCardsProps } from '../DashboardComponents/MyCards'
 import QuickTransferCard from '../DashboardComponents/QuickTransferCard'
 import RecentTransactionsList from '../DashboardComponents/RecentTransactionsList'
-import CardChipSvgBlack from '../Icons/CardChipSvgBlack'
-import CardChipSvgWhite from '../Icons/CardChipSvgWhite'
-import MasterCardSvg from '../Icons/MasterCardSvg'
 
 const Dashboard: React.FC = () => {
-  // in a real life senarior this data would be fetched from an api here
-  // since there arent any api calls no loading states or loaders were added
-  const pieData = {
-    labels: ['Entertainment', 'Bill Expenses', 'Investments', 'Others'],
-    values: [30, 15, 20, 35],
-    colors: ['#343C6A', '#FC7900', '#396AFF', '#232323'],
-    offsets: [20, 20, 20, 20],
-    title: 'Expense Statistics',
+  const [data, setData] = useState<{
+    pieData: any
+    barData: any
+    cardData: any
+    lineGraphData: any
+  }>({
+    pieData: null,
+    barData: null,
+    cardData: null,
+    lineGraphData: null,
+  })
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
+
+  const fetchData = async () => {
+    try {
+      const response = await axios.get('/api/dashboardData')
+      setData({
+        pieData: response.data.pieData,
+        barData: response.data.barData,
+        cardData: response.data.cardData,
+        lineGraphData: response.data.lineGraphData,
+      })
+      setLoading(false)
+    } catch (err: any) {
+      console.error('Error fetching dashboard data:', err.message)
+      setError('Failed to load data. Please try again later.')
+      setLoading(false)
+    }
+  }
+  useEffect(() => {
+    fetchData()
+  }, [])
+
+  if (loading) {
+    // better loading can be implemented at component level as well
+    return (
+      <div className='flex justify-center items-center h-screen'>
+        <p>Loading...</p>
+      </div>
+    )
   }
 
-  const barData = {
-    labels: ['Sat', 'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri'],
-    datasets: [
-      {
-        label: 'Deposits',
-        data: [200, 300, 500, 700, 600, 400, 300],
-        backgroundColor: '#232323',
-        borderRadius: 9999,
-        borderSkipped: false,
-      },
-      {
-        label: 'Withdrawals',
-        data: [150, 250, 300, 400, 350, 200, 150],
-        backgroundColor: '#396AFF',
-        borderRadius: 9999,
-        borderSkipped: false,
-      },
-    ],
-    title: 'Weekly Activity',
-    height: 400,
+  if (error) {
+    return (
+      <div className='flex justify-center items-center h-screen'>
+        <p>{error}</p>
+      </div>
+    )
   }
 
-  const cardData = [
-    {
-      balance: '2,450.00',
-      cardNumber: '1234 **** **** 3456',
-      cardHolder: 'John Doe',
-      validThru: '12/26',
-      chipIcon: <CardChipSvgWhite className='w-8 h-8' />,
-      cardTypeIcon: <MasterCardSvg />,
-      cardType: 'dark',
-    },
-    {
-      balance: '8,720.50',
-      cardNumber: '9876 **** **** 7654',
-      cardHolder: 'Jane Smith',
-      validThru: '06/25',
-      chipIcon: <CardChipSvgBlack className='w-8 h-8' />,
-      cardTypeIcon: <MasterCardSvg />,
-      cardType: 'white',
-    },
-  ]
+  const { pieData, barData, cardData, lineGraphData } = data
 
-  const lineGraphData = {
-    labels: ['Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan', 'Feb'],
-    data: [100, 250, 400, 800, 500, 200, 100, 400],
-  }
   return (
     <AppLayout title='Overview'>
       <div className='grid grid-cols-1 gap-2 md:grid-cols-3'>
